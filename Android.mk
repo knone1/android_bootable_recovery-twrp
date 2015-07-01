@@ -308,7 +308,7 @@ ifeq ($(TARGET_RECOVERY_QCOM_RTC_FIX),)
 else ifeq ($(TARGET_RECOVERY_QCOM_RTC_FIX),true)
     LOCAL_CFLAGS += -DQCOM_RTC_FIX
 endif
-ifneq ($(TW_NO_LEGACY_PROPS),)
+ifeq ($(TW_NO_LEGACY_PROPS), true)
 	LOCAL_CFLAGS += -DTW_NO_LEGACY_PROPS
 endif
 ifneq ($(wildcard bionic/libc/include/sys/capability.h),)
@@ -440,8 +440,11 @@ include $(BUILD_SHARED_LIBRARY)
 
 include $(CLEAR_VARS)
 LOCAL_MODULE := verifier_test
+
 LOCAL_FORCE_STATIC_EXECUTABLE := true
+
 LOCAL_MODULE_TAGS := tests
+
 
 LOCAL_C_INCLUDES := $(LOCAL_PATH)/libmincrypt/includes
 

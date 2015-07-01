@@ -160,7 +160,8 @@ char* parse_recovery_command_file()
     int count = 0;
     char temp[1024];
 
-    FILE* f = fopen(RECOVERY_COMMAND_FILE, "r");
+    int fd = open(RECOVERY_COMMAND_FILE_TMP, O_WRONLY | O_SYNC);
+    FILE* fo = fdopen(fd, "w");
     if (f == NULL) {
         return NULL;
     }
